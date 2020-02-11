@@ -9,5 +9,6 @@ namespace MiniCloud.Main.DataAccess.Repository.User
     public interface IAccountRepository
     {
         Task CreateAccount(Account account);
+        Task<Account> GetUserByEmail(string email);
     }
 }

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniCloud.Main.DataAccess",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniCloud.Main.Service", "MiniCloud.Main.Service\MiniCloud.Main.Service.csproj", "{82F92AD8-52CD-48E2-A998-8740D2F0E48C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniCloud.Main.Helpers", "MiniCloud.Main.Helpers\MiniCloud.Main.Helpers.csproj", "{F75B5835-562E-4775-AD53-A5B3B5EF0C77}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{82F92AD8-52CD-48E2-A998-8740D2F0E48C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{82F92AD8-52CD-48E2-A998-8740D2F0E48C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{82F92AD8-52CD-48E2-A998-8740D2F0E48C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F75B5835-562E-4775-AD53-A5B3B5EF0C77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75B5835-562E-4775-AD53-A5B3B5EF0C77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75B5835-562E-4775-AD53-A5B3B5EF0C77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75B5835-562E-4775-AD53-A5B3B5EF0C77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

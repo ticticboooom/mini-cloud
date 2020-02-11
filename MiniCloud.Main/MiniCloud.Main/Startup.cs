@@ -12,6 +12,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MiniCloud.Main.DataAccess.Config;
 using MiniCloud.Main.DataAccess.Repository;
+using MiniCloud.Main.DataAccess.Repository.User;
+using MiniCloud.Main.Helpers.TokenHelper;
+using MiniCloud.Main.Service.Account;
 
 namespace MiniCloud.Main
 {
@@ -30,6 +33,9 @@ namespace MiniCloud.Main
             services.AddControllers();
             services.Configure<DbConfig>(Configuration.GetSection("ConnectionStrings"));
             services.AddScoped<DbConnectionFactory>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITokenHelper, TokenHelper>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

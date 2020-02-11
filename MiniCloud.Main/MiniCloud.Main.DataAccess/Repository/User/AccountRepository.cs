@@ -20,7 +20,15 @@ namespace MiniCloud.Main.DataAccess.Repository.User
         {
             using (var conn = _connectionFactory.CreateConnection())
             {
-                await conn.ExecuteAsync("INSERT INTO accounts (first_name, last_name, username, password_hash) VALUES (@FirstName, @LastName, @Username, @PasswordHash);", account);
+                await conn.ExecuteAsync("INSERT INTO accounts (first_name, last_name, email_address, password_hash) VALUES (@FirstName, @LastName, @EmailAddress, @PasswordHash);", account);
+            }
+        }
+
+        public async Task<Account> GetUserByEmail(string email)
+        {
+            using (var conn = _connectionFactory.CreateConnection())
+            {
+                return await conn.QueryFirstOrDefaultAsync<Account>("SELECT id as Id, first_name as FirstName, last_name as LastName, email_address as EmailAddress, password_hash as PasswordHash from accounts where email_address = @EmailAddress;", new { EmailAddress = email });
             }
         }
     }
