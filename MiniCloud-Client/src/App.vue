@@ -24,5 +24,17 @@ html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
   border: none;
   outline: none;
   border-radius: 5px;
+  &:hover {
+    background-color: #2c3e50;
+  }
+}
+
+a:hover {
+  cursor: pointer;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
 </style>

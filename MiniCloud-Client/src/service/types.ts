@@ -6,3 +6,12 @@ export interface loginModel{
 export interface LoginResponseModel {
     accessToken: string;
 }
+
+
+export interface RegisterModel {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+
+}

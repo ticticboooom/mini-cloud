@@ -19,14 +19,14 @@ namespace MiniCloud.Main.Controllers
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register([FromBody]RegisterModel model)
         {
             await _accountService.Register(model);
             return Ok();
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login([FromBody]LoginModel model)
         {
             var token = await _accountService.Login(model);
             return Ok(new { AccessToken = token });

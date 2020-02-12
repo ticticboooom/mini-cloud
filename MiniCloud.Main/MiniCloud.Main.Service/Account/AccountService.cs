@@ -48,7 +48,7 @@ namespace MiniCloud.Main.Service.Account
 
             return _tokenHelper.Generate(new Dictionary<string, object>()
             {
-                {"acc-uid", user.Id},
+                {"accId", user.Id},
             });
         }
     }

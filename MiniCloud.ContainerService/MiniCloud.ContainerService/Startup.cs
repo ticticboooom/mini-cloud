@@ -10,14 +10,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using MiniCloud.Main.DataAccess.Config;
-using MiniCloud.Main.DataAccess.Repository;
-using MiniCloud.Main.DataAccess.Repository.User;
-using MiniCloud.Main.Helpers.Config;
-using MiniCloud.Main.Helpers.TokenHelper;
-using MiniCloud.Main.Service.Account;
+using MiniCloud.ContainerService.DataAccess.Config;
+using MiniCloud.ContainerService.DataAccess.Repository;
+using MiniCloud.ContainerService.DataAccess.Repository.TaskDefinitionGroup;
+using MiniCloud.ContainerService.Service.TaskDefinitionGroups;
 
-namespace MiniCloud.Main
+namespace MiniCloud.ContainerService
 {
     public class Startup
     {
@@ -32,13 +30,10 @@ namespace MiniCloud.Main
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.Configure<DbConfig>(Configuration.GetSection("ConnectionStrings"));
-            services.Configure<TokenConfig>(Configuration.GetSection("Tokens"));
+            services.Configure<DbConfig>(Configuration.GetSection("ConnectionString"));
             services.AddScoped<DbConnectionFactory>();
-            services.AddScoped<IAccountRepository, AccountRepository>();
-            services.AddScoped<IAccountService, AccountService>();
-            services.AddScoped<ITokenHelper, TokenHelper>();
-            services.AddCors(x => x.AddDefaultPolicy(y => y.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin()));
+            services.AddScoped<ITaskDefinitionGroupRepository, TaskDefinitionGroupRepository>();
+            services.AddScoped<ITaskDefinitionGroupService, TaskDefinitionGroupService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,11 +45,11 @@ namespace MiniCloud.Main
             }
 
             app.UseHttpsRedirection();
-            app.UseCors();
 
             app.UseRouting();
 
             app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

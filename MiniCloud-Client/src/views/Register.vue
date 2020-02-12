@@ -1,21 +1,28 @@
 <template>
   <div class="form-wrapper">
     <form class="login-form" @submit.prevent="submit()">
-      <div class="form-header">Login</div>
+      <div class="form-header">Register</div>
       <div class="form-body">
+        <div class="form-section clearfix">
+          <div class="form-section-half">
+            <label>First Name</label>
+            <input type="text" v-model="firstName" />
+          </div>
+          <div class="form-section-half">
+            <label>Last Name</label>
+            <input type="text" v-model="lastName" />
+          </div>
+        </div>
         <div class="form-section">
           <label>Email Address</label>
-          <input type="email" v-model="email" />
+          <input type="text" v-model="email" />
         </div>
         <div class="form-section">
           <label>Password</label>
-          <input type="password" v-model="password" />
+          <input type="text" v-model="password" />
         </div>
         <div class="form-section">
-          <button class="button-primary">Login</button>
-        </div>
-        <div class="form-section">
-          <a @click="register()">No account yet? Try registration.</a>
+          <button class="button-primary">Register</button>
         </div>
       </div>
     </form>
@@ -27,19 +34,14 @@ import { Vue, Component } from "vue-property-decorator";
 import ApiService from "@/service/api-service";
 @Component({})
 export default class Login extends Vue {
+  private firstName = "";
+  private lastName = "";
   private email = "";
   private password = "";
 
-  private register() {
-    this.$router.push("/account/register");
-  }
 
   private submit() {
-    ApiService.postLogin({ email: this.email, password: this.password }).then(
-      resp => {
-        localStorage.setItem("accessToken", resp.data.accessToken);
-      }
-    );
+    ApiService.postRegister({ firstName: this.firstName, lastName: this.lastName, email: this.email, password: this.password });
   }
 }
 </script>
@@ -50,7 +52,7 @@ export default class Login extends Vue {
   padding-top: 100px;
   margin: auto;
   .login-form {
-    width: 400px;
+    width: 600px;
     .form-header {
       font-family: neue-haas-unica, sans-serif;
       font-weight: 200;
@@ -59,9 +61,9 @@ export default class Login extends Vue {
       color: #000000;
       width: 100%;
       padding: 20px 40px;
+      border-radius: 5px 5px 0 0;
       background-color: #fafafa;
       border: 1px solid #dedede;
-      border-radius: 5px 5px 0 0;
     }
     .form-body {
       border: 1px solid #dedede;
@@ -71,6 +73,16 @@ export default class Login extends Vue {
       text-align: left;
       padding: 20px;
       .form-section {
+        .form-section-half {
+          width: 50%;
+          float: left;
+          &:first-of-type {
+            padding-right: 15px;
+          }
+          &:last-of-type {
+            padding-left: 15px;
+          }
+        }
         label {
           font-family: upgrade, sans-serif;
           font-weight: 200;
