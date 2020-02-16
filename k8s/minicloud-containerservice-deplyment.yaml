@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: minicloud-containerservice-deployment
+  namespace: minicloud-mgmt
+spec:
+  selector:
+    matchLabels:
+      app: minicloud
+  replicas: 2
+  template:
+    metadata:
+      labels: 
+        app: minicloud
+    spec:
+      containers:
+      - name: minicloud-containerservice
+        image: 192.168.8.102
+        ports:
+          - containerPort: 80
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: "100Mi"
